@@ -1,0 +1,117 @@
+---
+import "../styles/global.css";
+import "lenis/dist/lenis.css";
+
+import Hero from "../assets/hero01.jpg";
+
+import "@fontsource-variable/nunito/wght.css";
+import "@fontsource-variable/comfortaa/wght.css";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/atci.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>
+      ATCI | Desarrollos web, plataformas e-commerce, apps móviles y más!
+    </title>
+    <meta
+      name="description"
+      content="ATCI SAS desarrolla sitios web, plataformas e-commerce y soluciones digitales a medida. Tecnología, diseño y estrategia para empresas en Argentina."
+    />
+    <meta
+      name="keywords"
+      content="desarrollo web, ecommerce, diseño web, aplicaciones, software, ATCI, Rosario, Argentina"
+    />
+    <meta name="author" content="ATCI SAS" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://atci.com.ar/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/atci.svg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta
+      property="og:title"
+      content="ATCI | Desarrollo web y soluciones digitales"
+    />
+    <meta
+      property="og:description"
+      content="Diseñamos y desarrollamos soluciones digitales que impulsan negocios. Web, e-commerce y aplicaciones a medida."
+    />
+    <meta property="og:url" content="https://atci.com.ar/" />
+    <meta property="og:site_name" content="ATCI SAS" />
+    <meta property="og:image" content={Hero.src} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="ATCI – Desarrollo web y soluciones digitales"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ATCI | Desarrollo web y soluciones digitales"
+    />
+    <meta
+      name="twitter:description"
+      content="Webs modernas, e-commerce y software a medida para empresas."
+    />
+    <meta name="twitter:image" content={Hero.src} />
+
+    <!-- Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="min-h-screen">
+    <slot />
+  </body>
+</html>
+
+<script>
+  import Lenis from "lenis";
+
+  const lenis = new Lenis({
+    autoRaf: true,
+    lerp: 0.05,
+    wheelMultiplier: 1,
+    duration: 1.2,
+  });
+</script>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Nunito Variable", sans-serif;
+  }
+
+  .title {
+    font-family: "Comfortaa Variable", system-ui;
+  }
+
+  body::selection {
+    background-color: #1ac4f4;
+    color: #ffffff;
+  }
+
+  .lock-scroll {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+</style>

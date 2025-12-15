@@ -1,0 +1,216 @@
+---
+import agrometal from "../../assets/projects/agrometal.jpg";
+import finochietto from "../../assets/projects/finochietto.jpg";
+import intagro from "../../assets/projects/intagro.jpg";
+import labragadense from "../../assets/projects/labragadense.jpg";
+import medife from "../../assets/projects/medife.jpg";
+import sanblas from "../../assets/projects/sanblas.jpg";
+
+export interface Project {
+  title: string;
+  image: string;
+  url: string;
+  description: string[];
+}
+
+const listProjects: Project[] = [
+  {
+    title: "San Blas Boats",
+    image: sanblas.src,
+    url: "https://sanblasboats.com/",
+    description: [
+      "Portal de renta de embarcaciones",
+      "Plataforma de reservas",
+      "Diseño UX/UI",
+      "Front-end / Back-end",
+    ],
+  },
+  {
+    title: "Agrometal",
+    image: agrometal.src,
+    url: "https://agrometal.com/",
+    description: [
+      "Desarrollo de sitio corporativo",
+      "Desarrollo de portal de Usados Verificados",
+      "Diseño UX/UI",
+      "Front-end / Back-end",
+      "agrometal.com / usados.agrometal.com",
+    ],
+  },
+  {
+    title: "Intagro",
+    image: intagro.src,
+    url: "https://intagro.com/",
+    description: [
+      "Web site corporativo",
+      "Web Apps",
+      "Diseño UX/UI",
+      "Front-end / Back-end",
+      "Apps",
+    ],
+  },
+  {
+    title: "Medifé",
+    image: medife.src,
+    url: "https://www.medife.com.ar",
+    description: [
+      "Medicina privada",
+      "Portales Asociados - Prestadores - Empresas",
+      "Integración con ERP",
+      "CMS",
+    ],
+  },
+  {
+    title: "Sanatorio Finochietto",
+    image: finochietto.src,
+    url: "https://www.sanatoriofinochietto.com/",
+    description: [
+      "Centro Médico",
+      "Web site corporativo",
+      "Diseño UX/UI",
+      "Front-end / Back-end",
+    ],
+  },
+  {
+    title: "La Bragadense",
+    image: labragadense.src,
+    url: "http://www.labragadense.com.ar",
+    description: [
+      "Web site corporativo",
+      "Web Apps",
+      "Diseño UX/UI",
+      "Front-end / Back-end",
+      "Apps",
+    ],
+  },
+];
+---
+
+<div
+  id="carousel-container"
+  class="relative flex items-center max-w-5xl mx-3 md:mx-10 lg:mx-auto overflow-hidden mb-8"
+>
+  <div id="carousel-slider" class="relative flex items-center w-full">
+    {
+      listProjects.map((project) => (
+        <div class="relative shrink-0" style="width: 100%;">
+          <img
+            class="h-44 min-[350px]:h-64 sm:h-auto max-w-full rounded object-cover transition-all pointer-events-none select-none"
+            src={project.image}
+            alt={`Nombre del proyecto ${project.title}`}
+          />
+
+          <div class="absolute flex flex-col gap-2 left-3 bottom-3 drop-shadow-lg">
+            <h6 class="text-white font-semibold text-sm sm:text-base md:text-lg">
+              {project.title}
+            </h6>
+            <div class="md:flex flex-wrap text-white gap-x-1 max-w-xs sm:max-w-sm hidden">
+              {project.description.map((d) => (
+                <span>{d}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div
+    class="absolute flex items-center justify-between top-1/2 -translate-y-1/2 w-full"
+  >
+    <button
+      id="prev-btn"
+      class="p-1 md:p-3 ml-2 md:ml-5 group transition-all duration-200 bg-white sm:bg-transparent cursor-pointer rounded hover:bg-white border border-dashed border-black sm:border-white z-30"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#fff"
+        class="transition-all duration-200 fill-black sm:fill-white group-hover:fill-black size-4 md:size-6"
+      >
+        <path
+          d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"
+        ></path>
+      </svg>
+    </button>
+    <button
+      id="next-btn"
+      class="p-1 md:p-3 mr-2 md:mr-5 group transition-all duration-200 bg-white sm:bg-transparent cursor-pointer rounded hover:bg-white border border-dashed border-black sm:border-white z-30"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#fff"
+        class="transition-all duration-200 fill-black sm:fill-white group-hover:fill-black size-4 md:size-6"
+      >
+        <path
+          d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"
+        ></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  import gsap from "gsap";
+
+  const container = document.getElementById(
+    "carousel-container"
+  ) as HTMLDivElement;
+  const slider = document.getElementById("carousel-slider") as HTMLDivElement;
+  const prevBtn = document.getElementById("prev-btn") as HTMLButtonElement;
+  const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
+
+  let isAnimating = false;
+  let isHover = false;
+
+  const slideWidth = () => slider.children[0].clientWidth;
+
+  function next() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    gsap.to(slider, {
+      x: -slideWidth(),
+      duration: 0.6,
+      ease: "power2.inOut",
+      onComplete: () => {
+        slider.appendChild(slider.children[0]);
+        gsap.set(slider, { x: 0 });
+        isAnimating = false;
+      },
+    });
+  }
+
+  function prev() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const last = slider.children[slider.children.length - 1];
+    slider.insertBefore(last, slider.firstChild);
+
+    gsap.set(slider, { x: -slideWidth() });
+
+    gsap.to(slider, {
+      x: 0,
+      duration: 0.6,
+      ease: "power2.inOut",
+      onComplete: () => {
+        isAnimating = false;
+      },
+    });
+  }
+
+  container.addEventListener("mouseenter", () => (isHover = true));
+  container.addEventListener("mouseleave", () => (isHover = false));
+
+  setInterval(() => {
+    if (!isHover && !isAnimating) next();
+  }, 3000);
+
+  nextBtn.addEventListener("click", next);
+  prevBtn.addEventListener("click", prev);
+</script>

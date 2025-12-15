@@ -1,0 +1,72 @@
+---
+import logo1 from "../../assets/icons/logo1.png";
+import logo2 from "../../assets/icons/logo2.png";
+import logo3 from "../../assets/icons/logo3.png";
+import logo4 from "../../assets/icons/logo4.png";
+import logo5 from "../../assets/icons/logo5.png";
+import logo6 from "../../assets/icons/logo6.png";
+import logo7 from "../../assets/icons/logo7.png";
+import logo8 from "../../assets/icons/logo8.png";
+import logo9 from "../../assets/icons/logo9.png";
+import logo10 from "../../assets/icons/logo10.png";
+import logo11 from "../../assets/icons/logo11.png";
+import logo12 from "../../assets/icons/logo12.png";
+
+const logoList = [
+  logo1,
+  logo2,
+  logo3,
+  logo4,
+  logo5,
+  logo6,
+  logo7,
+  logo8,
+  logo9,
+  logo10,
+  logo11,
+  logo12,
+];
+---
+
+<section class="py-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4">
+    <h3
+      class="text-xl sm:text-2xl md:text-3xl text-center mb-8 text-[#1ac4f4] font-bold uppercase"
+    >
+      Quienes nos eligen
+    </h3>
+
+    <div
+      class="flex overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+    >
+      <div
+        id="logos-track"
+        class="flex flex-none gap-12 sm:gap-16 md:gap-24 pr-24 will-change-transform"
+      >
+        {
+          logoList.map((logo) => (
+            <img src={logo.src} class="h-16 lg:h-20 object-contain" />
+          ))
+        }
+        {
+          logoList.map((logo) => (
+            <img src={logo.src} class="h-16 lg:h-20 object-contain" />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+
+  const track = document.getElementById("logos-track");
+
+  gsap.to(track, {
+    x: "-50%",
+    duration: 15,
+    ease: "linear",
+    repeat: -1,
+  });
+</script>

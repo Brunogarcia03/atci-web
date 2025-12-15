@@ -1,0 +1,71 @@
+---
+import testimonials from "../assets/testimonials.jpg";
+import logos from "../assets/logos-footer.png";
+---
+
+<footer
+  class="w-full pt-[10vh] bg-cover flex flex-col gap-10 justify-between h-full"
+  style={`background-image: url(${testimonials.src});`}
+>
+  <div
+    id="contacto-section"
+    class="flex flex-col md:flex-row justify-between md:max-w-6xl md:w-full mx-5 lg:mx-auto gap-10"
+  >
+    <form class="flex flex-col items-start gap-5 w-full" id="contacto">
+      <h3
+        class="text-lg sm:text-xl md:text-2xl text-[#1ac4f4] font-bold uppercase"
+      >
+        Contacto
+      </h3>
+      <input
+        type="text"
+        name="nombre"
+        placeholder="Nombre"
+        class="border border-dashed border-white text-white px-3 py-2 rounded w-full"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Correo Electrónico"
+        class="border border-dashed border-white text-white px-3 py-2 rounded w-full"
+      />
+
+      <textarea
+        name="mensaje"
+        placeholder="Mensaje"
+        class="border border-dashed border-white text-white px-3 py-2 rounded w-full"
+      ></textarea>
+      <button
+        type="submit"
+        class="bg-transparent border border-dashed border-[#1ac4f4] text-[#1ac4f4] hover:bg-[#1ac4f4] hover:text-white transition-colors duration-300 font-bold w-full max-w-5xl rounded uppercase py-2"
+      >
+        Enviar
+      </button>
+    </form>
+    <div class="flex flex-col justify-between w-full gap-5 text-white">
+      <div class="flex flex-col gap-5">
+        <h3
+          class="text-lg sm:text-xl md:text-2xl text-[#1ac4f4] font-bold uppercase"
+        >
+          ATCI SAS
+        </h3>
+        <p>Rosario, Santa Fe, Argentina</p>
+      </div>
+
+      <ul class="flex flex-col justify-start w-full">
+        <li><b>Teléfono</b>: (91) +54 341 424 2507</li>
+        <li><b>WhatsApp</b>: +54 341 5897634</li>
+        <li><b>Email</b>: contacto@atci.com.ar</li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class="flex flex-col items-center justify-center bottom-0 w-full bg-black text-white gap-3 py-2"
+  >
+    <img src={logos.src} alt="Logos Footer" class="object-cover h-10" />
+    <p class="text-xs md:text-sm px-5 text-center">
+      © Copyright ATCI SAS 1999-2025 | Todos los derechos reservados |
+      Desarrollos web | Rosario, Santa Fe, Argentina
+    </p>
+  </div>
+</footer>

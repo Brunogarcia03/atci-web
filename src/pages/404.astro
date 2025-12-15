@@ -1,0 +1,32 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <Header />
+  <main class="h-full w-full overflow-hidden">
+    <section class="grid min-h-screen h-full place-items-center pt-[60px]">
+      <div class="text-center px-5 sm:px-0">
+        <p class="text-base font-semibold text-indigo-400">404 - ATCI</p>
+        <h1
+          class="mt-4 font-semibold tracking-tight text-balance text-[#1ac4f4] text-5xl sm:text-7xl"
+        >
+          Página no encontrada
+        </h1>
+        <p
+          class="mt-6 text-lg font-medium text-pretty text-neutral-800 sm:text-xl/8"
+        >
+          Lo sentimos, no pudimos encontrar la página que estás buscando.
+        </p>
+        <div class="mt-10 flex items-center justify-center">
+          <a
+            href="/"
+            class="rounded-md w-full sm:w-lg py-2.5 text-sm font-semibold text-black hover:text-white shadow-xs border border-dashed border-[#1ac4f4] hover:bg-[#1ac4f4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1ac4f4]"
+            >Volver al inicio</a
+          >
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

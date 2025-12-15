@@ -1,0 +1,180 @@
+---
+import casport from "../assets/projects/grid-casport.jpg";
+import debona from "../assets/projects/grid-debona.jpg";
+import elfaro from "../assets/projects/grid-elfaro.jpg";
+import grobo from "../assets/projects/grid-grobo.jpg";
+import italmedica from "../assets/projects/grid-italmedica.jpg";
+import sectorsalud from "../assets/projects/grid-sectorsalud.jpg";
+import sofia from "../assets/projects/grid-sofia.jpg";
+import tecpoint from "../assets/projects/grid-tecpoint.jpg";
+import tomas from "../assets/projects/grid-tomas.jpg";
+import Carousel from "./ui/Carousel.astro";
+
+export interface Project {
+  title: string;
+  image: string;
+  url: string;
+  description: string[];
+}
+
+const listPortfolio: Project[] = [
+  {
+    title: "Italmedica",
+    image: italmedica.src,
+    url: "http://www.italmedicasalud.com.ar/",
+    description: [
+      "Salud",
+      "Web site corporativo",
+      "Diseño UX/UI",
+      "Front-end / Back-end",
+    ],
+  },
+  {
+    title: "Sector Salud",
+    image: sectorsalud.src,
+    url: "https://www.sectorsalud.com/",
+    description: [
+      "Portal de salud",
+      "Branding",
+      "Diseño UX/UI",
+      "Front-end / Back-end",
+      "Redes Sociales",
+      "Marketing Digital",
+    ],
+  },
+  {
+    title: "Casport",
+    image: casport.src,
+    url: "https://www.casport.com.ar/",
+    description: [
+      "Servicios Portuarios",
+      "Web site corporativo",
+      "Branding",
+      "Diseño UX/UI",
+    ],
+  },
+  {
+    title: "Sofia Commodities",
+    image: sofia.src,
+    url: "https://sofiacommodities.com/",
+    description: [
+      "Commodities",
+      "Agroindustria EU/LATAM",
+      "Diseño UX/UI",
+      "Front-end / Back-end",
+      "SEO",
+    ],
+  },
+  {
+    title: "Neumáticos Debona",
+    image: debona.src,
+    url: "",
+    description: [
+      "Industria / Comercio",
+      "Representante Oficial Michelin",
+      "APP Gestión Servicios / Seguimiento Neumáticos",
+      "Diseño UX/UI",
+      "Desarrollo",
+    ],
+  },
+  {
+    title: "El Faro Trading",
+    image: elfaro.src,
+    url: "https://www.elfarotrading.com",
+    description: [
+      "Capacitación en Trading de Commodities",
+      "Diseño UX/UI",
+      "Front-End / Back-End",
+    ],
+  },
+  {
+    title: "Grobocopatel Hnos",
+    image: grobo.src,
+    url: "http://www.grobocopatel.com.ar/",
+    description: ["Agro", "Web site corporativo", "Diseño UX/UI", "APP RRHH"],
+  },
+  {
+    title: "Tomas Hnos.",
+    image: tomas.src,
+    url: "http://www.tomashnos.com.ar/",
+    description: [
+      "Agro",
+      "Web site corporativo",
+      "Front-end / Back-end",
+      "Integración APIs",
+      "App RRHH",
+      "Intranet",
+    ],
+  },
+  {
+    title: "Tecpoint",
+    image: tecpoint.src,
+    url: "http://www.tecpoint.com.ar/",
+    description: [
+      "IT",
+      "Web site corporativo",
+      "Diseño UX/UI",
+      "Landings para eventos",
+    ],
+  },
+];
+---
+
+<section class="w-full min-h-screen">
+  <div
+    id="trabajos"
+    class="max-w-3xl w-full mx-auto flex flex-col items-center text-center z-10 pt-[10vh] md:pt-[calc(20vh)] pb-[5vh] md:pb-[calc(10vh)] text-black"
+  >
+    <h3
+      class="text-xl sm:text-2xl md:text-3xl mb-4 text-[#1ac4f4] font-bold uppercase"
+    >
+      Trabajos
+    </h3>
+    <h6 class="max-w-2xl w-full px-1 md:p-0 text-sm sm:text-lg md:text-xl mb-2">
+      Algunos de nuestros proyectos recientes.
+    </h6>
+    <p
+      class="text-xs sm:text-sm md:text-lg px-3 md:p-0 w-full text-neutral-800 text-center"
+    >
+      Desarrollamos soluciones tecnologías a medida para empresas de diversos
+      sectores, adaptándonos a sus necesidades específicas y objetivos
+      comerciales.
+    </p>
+  </div>
+  <Carousel />
+  <div
+    class="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-7 min-[380px]:gap-5 max-w-5xl mx-3 md:mx-10 lg:mx-auto pb-[calc(2vh)]"
+  >
+    {
+      listPortfolio.map((project) => (
+        <a
+          href={project.url}
+          class="flex flex-col gap-1 min-[380px]:gap-2 w-full group"
+        >
+          <img
+            src={project.image}
+            alt=""
+            class="rounded aspect-video object-cover group-hover:scale-95 transition-transform duration-300"
+          />
+          <h6 class="text-lg font-bold group-hover:text-[#1ac4f4] transition-colors duration-200">
+            {project.title}
+          </h6>
+          <div class="flex flex-wrap gap-x-1 text-xs">
+            {project.description.map((d) => (
+              <span class="">{d}</span>
+            ))}
+          </div>
+        </a>
+      ))
+    }
+  </div>
+  <div
+    class="flex justify-center w-full max-w-2xl mx-auto mt-8 mb-[calc(10vh)]"
+  >
+    <button
+      class="bg-transparent border border-dashed border-[#1ac4f4] text-[#1ac4f4] hover:bg-[#1ac4f4] hover:text-white transition-colors duration-300 font-bold w-full max-w-5xl mx-3 md:mx-10 rounded uppercase py-2"
+    >
+      más proyectos
+    </button>
+  </div>
+</section>

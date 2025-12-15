@@ -1,0 +1,62 @@
+---
+import quotesImage from "../../assets/testimonials.jpg";
+---
+
+<section id="section-sticky" class="relative w-full h-dvh">
+  <div id="sticky-wrapper" class="sticky top-0 w-full h-full overflow-hidden">
+    <!-- CAPA 1 -->
+    <div
+      id="sticky-1"
+      class="absolute inset-0 z-20 flex items-center bg-white text-[#1ac4f4] px-[5vw]"
+      style=`clip-path: inset(0 0 0 0);`
+    >
+      <h2
+        id="sticky-text"
+        class="font-bold text-left text-4xl sm:text-5xl md:text-6xl max-w-5xl title"
+      >
+        26 años. Cada proyecto es un desafío que resolvemos en equipo.
+      </h2>
+    </div>
+
+    <!-- CAPA 2 -->
+    <div
+      id="sticky-2"
+      class="absolute inset-0 z-10 flex items-center bg-[#1ac4f4] text-white px-[5vw]"
+    >
+      <h2
+        class="text-left text-4xl sm:text-5xl md:text-6xl max-w-5xl font-semibold"
+      >
+        Creemos en usted. Cada proyecto lo hacemos con cariño siempre.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // primero: recorta el primer sticky durante la primera mitad del scroll
+  gsap.to("#sticky-1", {
+    scrollTrigger: {
+      trigger: "#section-sticky",
+      start: "top top",
+      end: "center top",
+      // markers: true,
+      scrub: true,
+    },
+    clipPath: "inset(0 0 0 100%)",
+    ease: "none",
+  });
+  gsap.to("#sticky-text", {
+    scrollTrigger: {
+      trigger: "#section-sticky",
+      start: "top -100",
+      end: "center top",
+      scrub: true,
+    },
+    opacity: 0,
+  });
+</script>

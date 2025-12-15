@@ -1,0 +1,276 @@
+---
+import linkedin from "../assets/svgs/linkedin.svg";
+import instagram from "../assets/svgs/instagram.svg";
+import facebook from "../assets/svgs/facebook.svg";
+import whatsapp from "../assets/svgs/whatsapp.svg";
+
+const socialsList = [
+  { icon: linkedin, url: "https://www.linkedin.com/company/atci-ar" },
+  { icon: instagram, url: "https://www.instagram.com/atci.ar/" },
+  { icon: facebook, url: "https://www.facebook.com/atci.ar/" },
+  {
+    icon: whatsapp,
+    url: "https://api.whatsapp.com/send?phone=5493416182379",
+  },
+];
+---
+
+<header
+  class="fixed top-0 z-999 w-full h-[60px] px-5 md:px-10 bg-white shadow-md flex items-center justify-between"
+>
+  <nav class="flex gap-8 items-center">
+    <img src="/atci.svg" alt="Logo ATCI" class="h-[60px] btn-logo" />
+    <ul class="hidden md:flex items-center gap-5 uppercase menu-nav">
+      <li
+        data-target="empresa"
+        class="cursor-pointer transition-colors duration-300 hover:text-[#1ac4f4]"
+      >
+        Empresa
+      </li>
+      <li
+        data-target="servicios"
+        class="cursor-pointer transition-colors duration-300 hover:text-[#1ac4f4]"
+      >
+        Servicios
+      </li>
+      <li
+        data-target="rse"
+        class="cursor-pointer transition-colors duration-300 hover:text-[#1ac4f4]"
+      >
+        RSE
+      </li>
+      <li
+        data-target="trabajos"
+        class="cursor-pointer transition-colors duration-300 hover:text-[#1ac4f4]"
+      >
+        Trabajos
+      </li>
+    </ul>
+  </nav>
+  <div class="flex items-center gap-3">
+    <a
+      href="https://api.whatsapp.com/send?phone=5493416182379"
+      target="_blank"
+      class="hidden md:flex items-center justify-center
+         border border-dashed border-[#1ac4f4] p-2.5 rounded uppercase cursor-pointer"
+    >
+      <img src={whatsapp.src} alt="WhatsApp Icon" class="h-5 w-5" />
+    </a>
+    <button
+      id="menu"
+      class="block md:hidden py-2 px-3 group transition-all duration-200 bg-transparent cursor-pointer rounded hover:bg-neutral-800 border border-dashed border-neutral-800"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#000"
+        class="transition-all duration-300 group-hover:fill-white"
+        ><path
+          d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+        ></path></svg
+      >
+    </button>
+    <button
+      class="btn-contacto hidden sm:block border border-dashed border-[#1ac4f4] hover:bg-[#1ac4f4] hover:text-[#FFFFFF] text-[#1ac4f4] transition-colors duration-300 font-bold py-2 px-3 rounded uppercase cursor-pointer"
+      >Contacto</button
+    >
+  </div>
+</header>
+<div
+  id="menu-fixed"
+  class="fixed hidden top-0 w-full min-h-screen h-full z-998 bg-white py-[60px]"
+>
+  <div class="flex flex-col h-full justify-between pt-10 px-5">
+    <ul class="flex flex-col gap-5 menu-nav">
+      <li
+        data-target="empresa"
+        class="font-bold text-xl sm:text-3xl uppercase cursor-pointer transition-colors duration-300 border-b-2 pb-1 border-dashed hover:text-[#1ac4f4]"
+      >
+        Empresa
+      </li>
+      <li
+        data-target="servicios"
+        class="font-bold text-xl sm:text-3xl uppercase cursor-pointer transition-colors duration-300 border-b-2 pb-1 border-dashed hover:text-[#1ac4f4]"
+      >
+        Servicios
+      </li>
+      <li
+        data-target="rse"
+        class="font-bold text-xl sm:text-3xl uppercase cursor-pointer transition-colors duration-300 border-b-2 pb-1 border-dashed hover:text-[#1ac4f4]"
+      >
+        RSE
+      </li>
+      <li
+        data-target="trabajos"
+        class="font-bold text-xl sm:text-3xl uppercase cursor-pointer transition-colors duration-300 border-b-2 pb-1 border-dashed hover:text-[#1ac4f4]"
+      >
+        Trabajos
+      </li>
+    </ul>
+    <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-1">
+        <h6>ATCI en redes sociales</h6>
+        <div class="flex items-center gap-x-2">
+          {
+            socialsList.map((social) => (
+              <a
+                href={social.url}
+                target="_blank"
+                class="border border-dashed border-black p-1 rounded"
+              >
+                <img src={social.icon.src} class="h-6 w-6 sm:h-10 sm:w-10" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <button
+        id="contacto"
+        class="btn-contacto border border-dashed bg-[#1ac4f4] border-black text-black hover:bg-[#1ac4f4] hover:text-[#FFFFFF] transition-colors duration-300 font-bold py-2 px-3 rounded uppercase cursor-pointer"
+        >Contacto</button
+      >
+    </div>
+  </div>
+</div>
+
+<script>
+  import Lenis from "lenis";
+  import gsap from "gsap";
+
+  let lenis = new Lenis({ autoRaf: true });
+
+  const menu = document.getElementById("menu");
+  const menuFixed = document.getElementById("menu-fixed") as HTMLDivElement;
+  let menuOpen = false;
+  let scrollPos = 0;
+
+  gsap.set(menuFixed, {
+    x: "-100%",
+    borderBottomRightRadius: "20vw",
+  });
+
+  function openMenu() {
+    scrollPos = window.scrollY || window.pageYOffset;
+
+    if (lenis && typeof lenis.stop === "function") lenis.stop();
+
+    document.documentElement.classList.add("lock-scroll");
+    document.documentElement.style.top = `-${scrollPos}px`;
+
+    menuOpen = true;
+
+    menuFixed.style.display = "block";
+    gsap.to("#menu-fixed", {
+      x: 0,
+      borderBottomRightRadius: 0,
+      ease: "power3.inOut",
+      duration: 0.8,
+    });
+  }
+
+  function closeMenu() {
+    document.documentElement.classList.remove("lock-scroll");
+    document.documentElement.style.top = "";
+
+    window.scrollTo(0, scrollPos);
+
+    if (lenis && typeof lenis.start === "function") lenis.start();
+
+    menuOpen = false;
+
+    gsap.to("#menu-fixed", {
+      x: "-100%",
+      borderBottomRightRadius: "30vw",
+      ease: "power3.inOut",
+      duration: 0.8,
+      onComplete: () => {
+        menuFixed.style.display = "none";
+      },
+    });
+  }
+
+  menu?.addEventListener("click", () => {
+    if (!menuOpen) openMenu();
+    else closeMenu();
+  });
+
+  let lastScroll = 0;
+  const header = document.querySelector("header");
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll < 120) {
+      gsap.to(header, {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+      });
+    } else if (currentScroll > lastScroll) {
+      gsap.to(header, {
+        y: -100,
+        opacity: 0,
+        duration: 0.5,
+      });
+    } else {
+      gsap.to(header, {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+      });
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  document.querySelectorAll(".menu-nav li").forEach((ele) => {
+    const item = ele as HTMLLIElement;
+
+    item.addEventListener("click", () => {
+      if (window.innerWidth <= 767) closeMenu();
+
+      const id = item.dataset.target;
+      if (!id) return;
+
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  });
+
+  document.querySelectorAll(".btn-contacto").forEach((ele) => {
+    const item = ele as HTMLButtonElement;
+
+    item.addEventListener("click", () => {
+      if (window.innerWidth <= 767 && menuOpen === true) closeMenu();
+
+      const target = document.getElementById("contacto-section");
+      if (!target) return;
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  });
+
+  const btnLogo = document.querySelector(".btn-logo") as HTMLImageElement;
+
+  btnLogo.addEventListener("click", () => {
+    if (window.innerWidth <= 767) closeMenu();
+
+    const target = document.getElementById("empresa");
+    if (!target) return;
+
+    target?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+</script>

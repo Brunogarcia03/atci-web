@@ -1,0 +1,72 @@
+---
+import hero from "../assets/hero.jpg";
+---
+
+<section
+  id="empresa"
+  class="relative w-full h-dvh flex items-center justify-center"
+>
+  <img
+    src={hero.src}
+    alt="Hero"
+    class="absolute top-0 left-0 w-full h-dvh object-cover z-0"
+  />
+  <div class="absolute top-0 left-0 w-full h-dvh z-1 bg-black/45"></div>
+  <div
+    class="max-w-3xl w-full mx-auto flex flex-col items-center text-center z-10 pt-[calc(60px+10vh)] pb-[calc(10vh)] text-white"
+  >
+    <h3 class="text-sm sm:text-md md:text-lg mb-2 sm:mb-4">
+      Transformamos ideas en soluciones digitales
+    </h3>
+    <h1
+      class="text-5xl md:text-6xl lg:text-8xl font-bold mb-2 md:mb-5 uppercase select-none"
+    >
+      <span class="hidden sm:inline-block">Somos</span>
+      <span class="text-[#1ac4f4] font-sans">ATCI</span>
+    </h1>
+    <h2
+      class="hidden sm:block text-2xl max-w-md md:max-w-none font-semibold mb-2 pt-3"
+    >
+      Una consultora de tecnología orientada a soluciones online.
+    </h2>
+    <p
+      class="mb-4 md:mb-6 lg:mb-8 max-w-none px-2 md:px-0 sm:max-w-xl text-neutral-200"
+    >
+      <span class="text-[#1ac4f4]">Desde 1999</span> ayudamos a nuestros clientes
+      a redefinir sus negocios actuales, creando estrategias y procesos online exitosos
+      y con nuevas ventajas competitivas.
+    </p>
+    <button
+      class="btn-services bg-transparent hover:bg-white border border-dashed border-[#FFFFFF] text-[#FFFFFF] hover:text-[#1ac4f4] transition-colors duration-300 font-bold py-2 px-3 rounded uppercase"
+      >Conocé nuestros servicios</button
+    >
+  </div>
+  <button class="absolute z-10 bottom-3 left-1/2 -translate-1/2 animate-bounce">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      fill="#FFFFFF"
+      ><path
+        d="m480-320 160-160-56-56-64 64v-168h-80v168l-64-64-56 56 160 160Zm0 240q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+      ></path></svg
+    >
+  </button>
+</section>
+
+<script>
+  const btnServices = document.querySelector(
+    ".btn-services"
+  ) as HTMLButtonElement;
+
+  btnServices.addEventListener("click", () => {
+    const target = document.getElementById("servicios");
+    if (!target) return;
+
+    target?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+</script>
